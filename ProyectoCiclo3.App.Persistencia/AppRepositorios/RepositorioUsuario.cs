@@ -14,7 +14,7 @@ namespace ProyectoCiclo3.App.Persistencia.AppRepositorios
             usuarios= new List<Usuario>()
             {
                 new Usuario{id=1,nombre="Tyson",apellidos="Bernard Villada",direccion="Calle 30",telefono="3004966288"},
-                new Usuario{id=1,nombre="Vanessa",apellidos="P.",direccion="Belén Malibú",telefono="300xxxxxxx"}
+                new Usuario{id=2,nombre="Vanessa",apellidos="Prieto",direccion="Belén Málibu",telefono="300xxxxxxx"}
  
             };
         }
