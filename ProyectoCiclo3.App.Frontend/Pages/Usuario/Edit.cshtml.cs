@@ -9,32 +9,36 @@ using ProyectoCiclo3.App.Dominio;
  
 namespace ProyectoCiclo3.App.Frontend.Pages
 {
-    public class ListUsuarioModel : PageModel
+    public class EditUsuarioModel : PageModel
     {
         private readonly RepositorioUsuario repositorioUsuario;
-        public IEnumerable<Usuario> Usuarios {get;set;}
         [BindProperty]
         public Usuario Usuario {get;set;}
  
-        public ListUsuarioModel(RepositorioUsuario repositorioUsuario)
+        public EditUsuarioModel(RepositorioUsuario repositorioUsuario)
         {
-            this.repositorioUsuario = repositorioUsuario;
+            this.repositorioUsuario=repositorioUsuario;
         }
-    
-        public void OnGet()
+ 
+        public IActionResult OnGet(int usuarioId)
         {
-            Usuarios=repositorioUsuario.GetAll();
+            Usuario=repositorioUsuario.GetUsuarioWithId(usuarioId);
+            return Page();
+ 
         }
 
         public IActionResult OnPost()
         {
+            if(!ModelState.IsValid)
+            {
+                return Page();
+            }
             if(Usuario.id>0)
             {
-                Usuario = repositorioUsuario.Delete(Usuario.id);
+                Usuario = repositorioUsuario.Update(Usuario);
             }
             return RedirectToPage("./List");
         }
 
     }
 }
-
